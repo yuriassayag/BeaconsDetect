@@ -31,7 +31,6 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity {
 
     private BluetoothAdapter bluetoothAdapter;
-    public Handler dataHandler = new Handler();
 
     Map<String, ArrayList<Integer>> beaconsRssis = new HashMap<String, ArrayList<Integer>>();
 
@@ -40,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if( isPermissionsGranted() && bleSupport() && activateBle()) startScan();
+        if (isPermissionsGranted() && bleSupport() && activateBle()) startScan();
     }
 
     @Override
@@ -61,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void stopScan() {
         stop();
-        dataHandler.removeCallbacksAndMessages(null);
     }
 
     public void start() {
@@ -117,13 +115,10 @@ public class MainActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
             case 1: {
-
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    if ( bleSupport() ) {
-                        if ( activateBle() ) {
-                            Log.i("resultado", "onRequestPermission OK");
-                        }
+                    if ( bleSupport()  && activateBle()) {
+                        Log.i("resultado", "onRequestPermission OK");
                     }
                 }
                 else {
