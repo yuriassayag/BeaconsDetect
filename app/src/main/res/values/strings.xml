@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DetectBeacons</string>
+    <string name="ble_not_supported">\"Ble not supported on this device</string>
+    <string name="ble_supported">Ble is supported on this device</string>
+</resources>
